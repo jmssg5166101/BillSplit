@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/billHomeColor"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/home"
+        android:layout_gravity="right"
+        android:id="@+id/homePic"
+        android:layout_above="@+id/homeText"
+        android:layout_centerHorizontal="true" />
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4337 House Bill"
+        android:textColor="@color/homeNameTextColor"
+        android:id="@+id/homeText"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/homePic"
+        android:layout_alignEnd="@+id/homePic" />
+
+</RelativeLayout>
