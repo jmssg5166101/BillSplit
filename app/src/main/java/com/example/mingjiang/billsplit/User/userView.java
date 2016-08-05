@@ -41,6 +41,7 @@ public class userView extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user);
+        Log.d("test git","test git");
 
         add=(ImageButton)findViewById(R.id.image_add);
         add.setOnClickListener(addOnClick);
