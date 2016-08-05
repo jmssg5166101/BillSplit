@@ -113,8 +113,9 @@ public class userView extends Activity {
 
         @Override
         public void onClick(View view) {
+            Log.d("Ming","recieved ItemPosition is:"+favoriteList.get(ItemPostion).getId());
                 ViewAdapter myAdapter=new ViewAdapter();
-                dboption.removeFav(favoriteList.get(ItemPostion+1).getId());
+                dboption.removeFav(favoriteList.get(ItemPostion).getId());
                 myAdapter.notifyDataSetChanged();
                 favoriteList = dboption.getFavList();
                 listview.setAdapter(new ViewAdapter());
