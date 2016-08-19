@@ -9,4 +9,5 @@
     <color name="billHomeColor">#AEFAF0</color>
     <color name="billMainColor">#FAF3BE</color>
     <color name="homeNameTextColor">#2C5E6D</color>
+    <color name="ListItemChosedColor">#F0C068</color>
 </resources>

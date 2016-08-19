@@ -26,12 +26,13 @@ import java.util.List;
  * Created by mingjiang on 7/28/16.
  */
 public class userView extends Activity {
+    private int Item=-1;
     FavoriteList favList=new FavoriteList();
     ImageButton add;
     ImageButton delete;
     Context context=this;
     dbOption dboption;
-
+    ViewAdapter myAdapter;
     ListView listview;
     List<FavoriteList> favoriteList;
     LinearLayout layout;
@@ -45,7 +46,7 @@ public class userView extends Activity {
 
         add=(ImageButton)findViewById(R.id.image_add);
         add.setOnClickListener(addOnClick);
-
+        myAdapter=new ViewAdapter();
         delete=(ImageButton)findViewById(R.id.image_delete);
         delete.setOnClickListener(deleteOnClick);
 
@@ -54,9 +55,12 @@ public class userView extends Activity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               //view.setBackgroundResource(R.color.ListItemChosedColor);
 
+                myAdapter.setSelectItem(i);
                 ItemPostion=i;
-                Log.d("Ming","ItemPosition is:"+ItemPostion);
+
+                Log.d("test","ItemPosition is:"+ItemPostion);
 //               ViewAdapter myAdapter=new ViewAdapter();
 //
 //                dboption.removeFav(favoriteList.get(i).getId());
@@ -66,7 +70,7 @@ public class userView extends Activity {
             }
         });
 
-        Log.d("Ming","add to datebase");
+        Log.d("test","add to datebase");
 
         dboption=new dbOption(context);
         favoriteList = dboption.getFavList();
@@ -77,7 +81,7 @@ public class userView extends Activity {
     View.OnClickListener addOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.d("Ming","on click response");
+            Log.d("test","on click response");
             final Dialog dialog = new Dialog(context);
             dialog.setContentView(R.layout.add);
             dialog.setTitle("Add Data to Database");
@@ -87,14 +91,14 @@ public class userView extends Activity {
             Button Add = (Button) dialog.findViewById(R.id.Add);
             Add.setText("Add");
 
-            Log.d("Ming","Add all element to dialog");
+            Log.d("test","Add all element to dialog");
             Add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(name.getText().toString() != null && name.getText().toString().length() >0 ){
-                        Log.d("Ming","excute add option to dialog");
+                        Log.d("test","excute add option to dialog");
                         dboption.addDataToUser(context, name.getText().toString(), phoneNum.getText().toString(),Email.getText().toString());
-                        Log.d("Ming","excute add option to dialog");
+                        Log.d("test","excute add option to dialog");
                         favoriteList = dboption.getFavList();
 
                         listview.setAdapter(new ViewAdapter());
@@ -113,8 +117,8 @@ public class userView extends Activity {
 
         @Override
         public void onClick(View view) {
-            Log.d("Ming","recieved ItemPosition is:"+favoriteList.get(ItemPostion).getId());
-                ViewAdapter myAdapter=new ViewAdapter();
+            Log.d("test","recieved ItemPosition is:"+favoriteList.get(ItemPostion).getId());
+
                 dboption.removeFav(favoriteList.get(ItemPostion).getId());
                 myAdapter.notifyDataSetChanged();
                 favoriteList = dboption.getFavList();
@@ -125,7 +129,9 @@ public class userView extends Activity {
 
     public class ViewAdapter extends BaseAdapter {
 
+
         LayoutInflater mInflater;
+
 
         public ViewAdapter() {
             mInflater = LayoutInflater.from(context);
@@ -162,7 +168,8 @@ public class userView extends Activity {
             EmailText.setText("Email address : "+favoriteList.get(position).getEmail());
             final TextView UserIdText = (TextView) convertView.findViewById(R.id.UserIdText);
             UserIdText.setText("UserId : "+favoriteList.get(position).getId());
-
+            Log.d("test","Postion is:"+position);
+            Log.d("test","Item is:"+Item);
 
 
 //            delete.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +183,11 @@ public class userView extends Activity {
 //            });
             return convertView;
         }
+        public  void setSelectItem(int selectItem) {
+            Log.d("test","select Item :"+selectItem);
+            Item = selectItem;
+        }
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.mingjiang.billsplit.User;
+package com.example.mingjiang.billsplit;
 
 /**
  * Created by mingjiang on 7/28/16.
@@ -16,9 +16,9 @@ public class MyDb extends SQLiteOpenHelper{
     //Database Name
     public static final String DATABASE_NAME = "Test";
     //Table Name
-    public static final String TABLE_TEST = "TestTable";
+    public static final String TABLE_USER = "UserTable";
 
-    public  static final String TABLE_BILL="BillTable";
+    public  static final String TABLE_BILLS="BillsTable";
     //Column Name
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
@@ -35,23 +35,27 @@ public class MyDb extends SQLiteOpenHelper{
     //Create Table
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("Ming","Oncreate");
-        String dropTable="DROP TABLE IF EXISTS " + TABLE_TEST;
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_TEST + "("
+        Log.d("test","Oncreate");
+        String dropTable="DROP TABLE IF EXISTS " + TABLE_USER;
+        String dropTable2="DROP TABLE IF EXISTS " + TABLE_BILLS;
+        String CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT,"
                 + KEY_PHONE + " TEXT," + KEY_EMAIL+" TEXT"+ ")";
-//        String CREATE_BILLS_TABLE = "CREATE TABLE " + TABLE_BILL + "("
-//                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-//                + KEY_PHONE + " TEXT," + KEY_EMAIL+" TEXT"+ ")";
-       // db.execSQL(dropTable);
-        db.execSQL(CREATE_CONTACTS_TABLE);
-        Log.d("Ming","excute the sql");
+        String CREATE_BILLS_TABLE = "CREATE TABLE " + TABLE_BILLS + "("
+                + KEY_ID + " INTEGER PRIMARY KEY," + BILL_NAME + " TEXT,"
+                + BILL_AMOUNT + " TEXT"+")";
+        db.execSQL(dropTable);
+        db.execSQL(dropTable2);
+        db.execSQL(CREATE_USERS_TABLE);
+        db.execSQL(CREATE_BILLS_TABLE);
+        Log.d("test","excute the sql");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TEST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BILLS);
         onCreate(db);
     }
 
