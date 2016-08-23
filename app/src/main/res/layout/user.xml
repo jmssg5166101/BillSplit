@@ -5,12 +5,19 @@
     android:orientation="vertical"
     android:background="@color/colorUserBg">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview"
+
+
+        ></ListView>
 
     <FrameLayout
         android:id="@+id/frameMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
         >
 
         <LinearLayout
@@ -68,14 +75,6 @@
             android:background="@android:color/black" >
         </LinearLayout>
     </FrameLayout>
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listview"
-        android:layout_above="@+id/frameMenu"
-
-
-        ></ListView>
 
     <!-- <ImageButton
          android:layout_width="wrap_content"

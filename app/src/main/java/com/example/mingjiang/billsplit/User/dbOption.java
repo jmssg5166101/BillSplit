@@ -131,7 +131,7 @@ public class dbOption {
     }
     public List<BillList> getBillListName(){
 
-        String selectQuery = "SELECT  * FROM " + mydb.TABLE_USER;
+        String selectQuery = "SELECT  * FROM " + mydb.TABLE_BILLS;
         SQLiteDatabase db = mydb.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         List<BillList> BillListName = new ArrayList<BillList>();
@@ -146,5 +146,24 @@ public class dbOption {
         return BillListName;
 
     }
+
+    public List<FavoriteList> getUserNameList(){
+
+        String selectQuery = "SELECT  * FROM " + mydb.TABLE_USER;
+        SQLiteDatabase db = mydb.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        List<FavoriteList> nameList = new ArrayList<FavoriteList>();
+        if (cursor.moveToFirst()) {
+            do {
+                FavoriteList list = new FavoriteList();
+                list.setName(cursor.getString(1));
+
+                nameList.add(list);
+            } while (cursor.moveToNext());
+        }
+        return nameList;
+
+    }
+
 
 }

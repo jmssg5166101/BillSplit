@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.mingjiang.billsplit.MyDb;
+import com.example.mingjiang.billsplit.User.FavoriteList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +96,28 @@ public class billDbOption {
             } while (cursor.moveToNext());
         }
         return BillList;
+
+    }
+
+
+    public List<FavoriteList> getUserNameList(){
+        Log.d("test","run getUserNameList function");
+
+        String selectQuery = "SELECT  * FROM " + mydb.TABLE_USER;
+        Log.d("test","run getUserNameList function");
+        SQLiteDatabase db = mydb.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        List<FavoriteList> nameList = new ArrayList<FavoriteList>();
+        if (cursor.moveToFirst()) {
+            do {
+                FavoriteList list = new FavoriteList();
+                list.setName(cursor.getString(1));
+
+                nameList.add(list);
+            } while (cursor.moveToNext());
+        }
+        Log.d("test","finish run getUserNameList function");
+        return nameList;
 
     }
 

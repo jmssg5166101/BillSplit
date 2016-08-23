@@ -15,17 +15,30 @@
         android:id="@+id/AddBillAmountText"
         android:hint="Bill Amount"
         />
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="select Users"
-        />
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/selectUserSpinner"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paid by"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="select user"
+            android:id="@+id/selectPaymentUser"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="and split"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="equally"
+            android:id="@+id/selectSplitUsers"/>
+    </LinearLayout>
 
-        android:spinnerMode="dropdown" />
 
     <Button
         android:layout_width="match_parent"
